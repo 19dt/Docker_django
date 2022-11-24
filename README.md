@@ -47,23 +47,11 @@ como no es un docker para una app nueva si no para dockerizar una app ya creada 
     'crispy_forms',
     'crispy_bootstrap5',
 
-## PASO 5 "Adjuntar aplicaciones creadas"
-En la carpeta raiz (a la misma altura que el proyecto "config") copias las app que queramos incluir, en este caso concreto copiamos de BitBucker la carpeta "apps" y la pegamos.
-
-## PASO 6 "Adjuntar la app del repositorio en Bitbucker a la raiz DOCKER_DJANGO"
+## PASO 5 "Adjuntar la app del repositorio en Bitbucker a la raiz DOCKER_DJANGO"
 - Arrastramos la app "inquimepProject" con todas las subcarpetas y la pegamos en la raiz actual (DOCKER_DJANGO, NO en la carpeta creada config), una vez añadida, tenemos que sustuir el archivo "urls.py" de nuestra app 
 en la carpeta config, para poder acceder a todas las rutas creadas en las vistas.
 
-## PASO 7 "Incluir la app en el archivo settings.py"
-- Dentro del archivo settings.py de nuestra carpeta config,en el apartado "INSTALLED_APPS" agregamos nuestras aplicaciones del proyecto:
-
-                                            'mainapp',
-                                            'crispy_forms',
-                                            'crispy_bootstrap5',
-                                            'entry',
-                                            'analysis',
-
-## PASO 8 "Sobreescritura del arhivo urls.py"
+## PASO 6 "Sobreescritura del arhivo urls.py"
 - Como hemos comentado, al ser una app ya creada y posteriormente dockerizada, tenemos que sustituir en el archivo "urls.py" del proyecto creado config lo siguiente para que nos funcione en la app creada:
 
 from apps.mainapp import views
@@ -117,11 +105,11 @@ urlpatterns = [
     path('profile_s/<int:id>', views.profile_silver, name="profile_s"),
 ]
 
-## PASO 9 "Levantar el docker-compose"
+## PASO 7 "Levantar el docker-compose"
 - Una vez hechas todas las modificaciones, levantamos el contenedor mediante el comando:
 docker-compose up
 
-## PASO 10 "Creacion de superuser"
+## PASO 8 "Creacion de superuser"
 - En Django es imprescindible tener un superuser que administre el sistema o aplicación, para hacerlo abrimos un nuevo terminal y con 
 el contener corriendo, escribimos los siguiente:
      - docker exec -it docker_django_web_1 (o el nombre de nuestro contenedor que en este caso es ese) /bin/sh
